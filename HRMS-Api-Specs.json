@@ -1,0 +1,340 @@
+openapi: 3.0.3
+info:
+  title: HRMS Application API Specification
+  description: |
+    API for retrieving HRMS Application API Specification.
+  version: 1.0.0
+servers:
+  - url: https://your-hrms-api.com/api/v1  # Update with your actual API URL
+
+paths:
+  /application-hrms/{applicationId}/LOB:
+    get:
+      summary: Get Line of Business by Application ID
+      description: Retrieve the Line of Business details for a specific HRMS application.
+      operationId: getLineOfBusiness
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineOfBusiness'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/environment:
+    get:
+      summary: Get Environment Name by Application ID
+      description: Retrieve the environment name for a specific HRMS application.
+      operationId: getEnvironmentName
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentName'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/application-type:
+    get:
+      summary: Get Application Type by Application ID
+      description: Retrieve the application type for a specific HRMS application.
+      operationId: getApplicationType
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationType'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/web-tier:
+    get:
+      summary: Get Web Tier by Application ID
+      description: Retrieve the web application tier for a specific HRMS application.
+      operationId: getWebApplicationTier
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebApplicationTier'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/app-tier:
+    get:
+      summary: Get App Tier by Application ID
+      description: Retrieve the application tier for a specific HRMS application.
+      operationId: getAppTier
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppTier'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/data-tier:
+    get:
+      summary: Get Data Tier by Application ID
+      description: Retrieve the data tier details for a specific HRMS application.
+      operationId: getDataTier
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataTier'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/auxiliary-tier:
+    get:
+      summary: Get Auxiliary Tier Details by Application ID
+      description: Retrieve details for the auxiliary tier of a specific HRMS application.
+      operationId: AuxiliaryDetails
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuxiliaryDetails'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/end-usage:
+    get:
+      summary: Get End Usage by Application ID
+      description: Retrieve end usage details for a specific HRMS application.
+      operationId: getEndUsage
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndUsage'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+  /application-hrms/{applicationId}/cost:
+    get:
+      summary: Get Cost Utilization by Application ID
+      description: Retrieve cost utilization details for a specific HRMS application.
+      operationId: getCostUtilization
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the HRMS application
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostUtilization'
+        '404':
+          description: Application not found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    LineOfBusiness:
+      type: object
+      properties:
+        lineOfBusinessId:
+          type: string
+          description: The unique identifier for the Line of Business
+        name:
+          type: string
+          description: The name of the Line of Business (e.g., "Claims," "Payroll," "Employee Benefits")
+        description:
+          type: string
+          description: A brief description of the Line of Business
+        status:
+          type: string
+          enum: [active, inactive]
+          description: The status of the Line of Business (e.g., "active," "inactive")
+
+    EnvironmentName:
+      type: object
+      properties:
+        environment:
+          type: string
+          description: The name of the environment (e.g., "staging," "development," "production")
+
+    ApplicationType:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the HRMS application (e.g., "3-Tier", "SOA")
+
+    WebApplicationTier:
+      type: object
+      properties:
+        webTier:
+          type: string
+          description: The web application tier type (e.g., "Single Page Application", "Traditional Web App")
+
+    AppTier:
+      type: object
+      properties:
+        appTier:
+          type: string
+          description: The application tier type (e.g., "Mobile App", "Desktop App")
+
+    DataTier:
+      type: object
+      properties:
+        storageType:
+          type: string
+          description: The type of data storage (e.g., "Relational Database", "NoSQL")
+        databaseName:
+          type: string
+          description: The name of the database used in the data tier
+        replicationStatus:
+          type: string
+          description: The replication status of the data (e.g., "Enabled", "Disabled")
+        backupEnabled:
+          type: boolean
+          description: Indicates whether data backup is enabled or not
+    AuxiliaryDetails:
+      type: object
+      properties:
+        auxiliaryType:
+          type: string
+          description: The type of auxiliary information (e.g., "Employee Training," "Company Announcements")
+    EndUsage:
+      type: object
+      properties:
+        usageType:
+          type: string
+          description: The type of end usage (e.g., "Employee Self-Service," "Manager Dashboard")
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features associated with the end usage
+        authenticationRequired:
+          type: boolean
+          description: Indicates whether authentication is required for the end usage
+        userPermissions:
+          type: array
+          items:
+            type: string
+          description: List of user permissions required for the end usage
+
+    CostUtilization:
+      type: object
+      properties:
+        totalCost:
+          type: number
+          format: double
+          description: The total cost associated with the HRMS application
+        utilizationPercentage:
+          type: number
+          format: double
+          description: The percentage of cost utilization
+        costBreakdown:
+          type: object
+          properties:
+            infrastructureCost:
+              type: number
+              format: double
+              description: Cost related to infrastructure (e.g., servers, cloud services)
+            maintenanceCost:
+              type: number
+              format: double
+              description: Cost related to maintenance and support
+            licensingCost:
+              type: number
+              format: double
+              description: Cost related to software licensing
